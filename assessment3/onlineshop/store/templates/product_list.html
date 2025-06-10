@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="{% static 'store/style.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <h1>Product List</h1>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+            <a href="#">Cart</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        {% if products %}
+            {% for product in products %}
+                <div class="product">
+                    <div class="product-name">{{ product.name }}</div>
+                    <div class="product-price">${{ product.price }}</div>
+                    <div class="product-category">{{ product.category.name }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-products">No products available.</p>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; {{ now|date:"Y" }} My Online Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
